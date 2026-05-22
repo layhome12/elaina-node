@@ -74,12 +74,12 @@ class App {
 
   private errorHandler(): void {
     // -- 404
-    this.app.use((req, res) => {
+    this.app.use((_, res) => {
       return Response.http(res, 404, "Not found");
     });
 
     // -- invalid json
-    this.app.use((err: any, req: any, res: ExResponse, next: any) => {
+    this.app.use((err: any, _: any, res: ExResponse, next: any) => {
       if (err instanceof SyntaxError && "body" in err) {
         return Response.http(res, 422, "Invalid JSON format");
       }
@@ -88,7 +88,7 @@ class App {
     });
 
     // -- error handler
-    this.app.use((err: any, req: any, res: any, next: any) => {
+    this.app.use((err: any, _: any, res: any) => {
       Logger.error("Internal Server Error", err);
       return Response.http(res, 500, "Internal Server Error");
     });

@@ -78,7 +78,7 @@ export class AuthController {
     });
   }
 
-  static async logout(req: Request, res: ExResponse): Promise<Response> {
+  static async logout(_: Request, res: ExResponse): Promise<Response> {
     res.clearCookie("x-token", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
