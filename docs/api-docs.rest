@@ -1,0 +1,99 @@
+@base_url = http://localhost:5000
+@token =
+@refresh_token =
+
+
+# --------------------------------------------------
+# AUTH
+# --------------------------------------------------
+
+### Login
+POST {{base_url}}/api/auth
+Content-Type: application/json
+
+{
+  "email": "developer@gmail.com",
+  "password": "password",
+  "remember": false
+}
+
+
+### Refresh Token
+GET {{base_url}}/api/auth/refresh
+Cookie: x-token={{refresh_token}}
+
+
+### Logout
+GET {{base_url}}/api/auth/logout
+Authorization: Bearer {{token}}
+
+
+
+# --------------------------------------------------
+# USERS
+# --------------------------------------------------
+
+### Get Users
+GET {{base_url}}/api/users?page=1&search=&limit=10
+Authorization: Bearer {{token}}
+
+
+### Get User By ID
+GET {{base_url}}/api/users/1
+Authorization: Bearer {{token}}
+
+
+### Create User
+POST {{base_url}}/api/users
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "group_id": 3,
+  "name": "User",
+  "email": "user@gmail.com",
+  "password": "password",
+  "biodata": "-"
+}
+
+
+### Update User
+PUT {{base_url}}/api/users/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "group_id": 3,
+  "name": "User",
+  "email": "user@gmail.com",
+  "password": null,
+  "biodata": "-"
+}
+
+
+### Delete User
+DELETE {{base_url}}/api/users/1
+Authorization: Bearer {{token}}
+
+
+
+# --------------------------------------------------
+# PROFILE
+# --------------------------------------------------
+
+### Get Profile
+GET {{base_url}}/api/profile
+Authorization: Bearer {{token}}
+
+
+### Update Profile
+PUT {{base_url}}/api/profile
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Developer",
+  "email": "developer@gmail.com",
+  "password": null,
+  "biodata": "-"
+}
