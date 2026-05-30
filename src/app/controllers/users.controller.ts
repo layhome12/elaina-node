@@ -90,7 +90,7 @@ export class UsersController {
       await UserService.delete(id);
       return Response.http(res, 200, "Removing users successful");
     } catch (error) {
-      return Response.http(res, 200, "Something wrong when remove users");
+      return Response.http(res, 500, "Something wrong when remove users");
     }
   }
 }
