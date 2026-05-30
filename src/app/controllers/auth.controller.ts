@@ -30,7 +30,7 @@ export class AuthController {
         gid: user.group_id,
         uid: user.id,
       },
-      "10m",
+      "30m",
     );
 
     // -- refresh token
